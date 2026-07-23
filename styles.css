@@ -190,7 +190,15 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
 .predict__choice .chip { margin-left: 4px; }
 .predict__actions { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
 .predict__streak { font-size: 13.5px; font-weight: 600; color: var(--muted); }
-.predict__result { margin-top: 10px; font-weight: 600; }
+/* Solid panel behind the verdict: the tinted predict background drops
+   accent/ok text below 4.5:1 (3.83 light / 4.37 dark measured) — the
+   verdict must sit on --panel, where both pass AA. */
+.predict__result {
+  margin-top: 10px; font-weight: 600;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 8px 12px;
+}
+.predict__result:empty { display: none; }
 .predict__result.good { color: var(--ok); }
 .predict__result.bad { color: var(--accent); }
 

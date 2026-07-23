@@ -116,7 +116,9 @@
       t.textContent = s.title;
       var m = document.createElement('span');
       m.className = 'snip__meta';
+      m.setAttribute('aria-hidden', 'true'); // dots read badly; the button label below speaks
       m.textContent = s.topic + ' · ' + '●'.repeat(s.difficulty) + '○'.repeat(3 - s.difficulty);
+      b.setAttribute('aria-label', s.title + ', ' + s.topic + ', difficulty ' + s.difficulty + ' of 3');
       b.appendChild(t); b.appendChild(m);
       b.addEventListener('click', function () { selectSnippet(s.id, true); });
       host.appendChild(b);
@@ -145,7 +147,10 @@
 
     $('snippetTitle').textContent = s.title;
     $('snippetTopic').textContent = s.topic;
-    $('snippetDifficulty').textContent = '●'.repeat(s.difficulty) + '○'.repeat(3 - s.difficulty);
+    var diff = $('snippetDifficulty');
+    diff.textContent = '●'.repeat(s.difficulty) + '○'.repeat(3 - s.difficulty);
+    diff.setAttribute('role', 'img');
+    diff.setAttribute('aria-label', s.difficulty + ' of 3');
     $('snippetCode').textContent = s.code;
 
     var badge = $('verifiedBadge');
