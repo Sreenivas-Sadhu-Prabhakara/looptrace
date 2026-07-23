@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg: #E3EAE0;
+    --ink: #16171A;
+    --muted: #445747;
+    --accent: #C42847;
+    --panel: #F4F7F2;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background: var(--bg);
+    font-family: var(--sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* the racetrack running across the frame — the looptrace motif */
+  .track { position: absolute; inset: 0; width: 1200px; height: 630px; }
+
+  .frame {
+    position: absolute; inset: 0;
+    padding: 70px 84px 62px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .mark { width: 64px; height: 64px; }
+  .wordmark { font-size: 54px; font-weight: 800; letter-spacing: -0.03em; }
+
+  .headline { max-width: 980px; }
+  .headline h1 {
+    font-size: 56px; font-weight: 800; letter-spacing: -0.028em; line-height: 1.08;
+  }
+  .headline h1 .red { color: var(--accent); }
+  .headline p {
+    margin-top: 22px; font-size: 27px; font-weight: 500;
+    color: var(--muted); line-height: 1.35; max-width: 40ch;
+  }
+
+  .chips { display: flex; gap: 12px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 20px; border: 2px solid var(--ink); border-radius: 999px;
+    background: var(--panel); font-family: var(--mono);
+    font-size: 21px; font-weight: 600; color: var(--ink);
+  }
+  .chip .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--accent); }
+  .chip.plain .dot { background: var(--muted); }
+</style>
+</head>
+<body>
+  <svg class="track" viewBox="0 0 1200 630" aria-hidden="true">
+    <!-- big racetrack loop crossing the frame -->
+    <rect x="150" y="-210" width="1300" height="700" rx="350"
+          fill="none" stroke="#16171A" stroke-width="7" opacity="0.9"/>
+    <rect x="185" y="-175" width="1230" height="630" rx="315"
+          fill="none" stroke="#5F7A62" stroke-width="2.5" opacity="0.45"/>
+    <!-- stations on the visible arc -->
+    <circle cx="330" cy="430" r="14" fill="#E3EAE0" stroke="#16171A" stroke-width="5"/>
+    <circle cx="760" cy="487" r="14" fill="#E3EAE0" stroke="#16171A" stroke-width="5"/>
+    <circle cx="1105" cy="330" r="14" fill="#E3EAE0" stroke="#16171A" stroke-width="5"/>
+    <!-- the crimson tick dot, mid-lap -->
+    <circle cx="760" cy="487" r="24" fill="#C42847" stroke="#E3EAE0" stroke-width="7"/>
+  </svg>
+
+  <div class="frame">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="4" y="7" width="24" height="18" rx="9" fill="none" stroke="#16171A" stroke-width="2.6"/>
+        <circle cx="16" cy="7" r="3.6" fill="#C42847"/>
+      </svg>
+      <div class="wordmark">looptrace</div>
+    </div>
+
+    <div class="headline">
+      <h1>See the JavaScript event loop <span class="red">run, step by step.</span></h1>
+      <p>Call stack · microtask queue · macrotask queue — 36 snippets, every console order proven in real Node.</p>
+    </div>
+
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>run script</span>
+      <span class="chip"><span class="dot"></span>drain microtasks</span>
+      <span class="chip"><span class="dot"></span>next macrotask</span>
+      <span class="chip plain"><span class="dot"></span>verified · Node v25.4.0</span>
+    </div>
+  </div>
+</body>
+</html>
